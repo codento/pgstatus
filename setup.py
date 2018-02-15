@@ -14,10 +14,10 @@ setup(
     license = 'PSF',
     packages = find_packages(),
     scripts = glob.glob('bin/*'),
-    python_requires='>=2.7,<=3.*',
+    python_requires='>=2.7',
     install_requires = (
         'configobj',
-        'psycopg2',
+        'psycopg2-binary',
         'systematic',
     ),
     setup_requires = (
