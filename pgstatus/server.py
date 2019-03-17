@@ -5,14 +5,14 @@ Simple HTTP server to check postgres cluster status
 import socket
 import sys
 
+from .configuration import Configuration, DEFAULT_CONFIG_PATH
+from .database import DatabaseStatus
+
 if sys.version_info.major >= 3:
     from http.server import BaseHTTPRequestHandler, HTTPServer
 else:
     from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
     from BaseHTTPServer import SocketServer
-
-from .configuration import Configuration, DEFAULT_CONFIG_PATH
-from .database import DatabaseStatus
 
 
 if sys.version_info.major < 3:
@@ -56,7 +56,7 @@ class DatabaseStatusHandler(BaseHTTPRequestHandler):
             status_code = 200
             message = '{0}\n'.format(status)
 
-        except Exception as e:
+        except Exception:
             status_code = 503
             message = 'PostgreSQL server is DOWN\n'
 
@@ -86,4 +86,3 @@ class StatusMonitoringServer(HTTPServer):
         except KeyboardInterrupt:
             print('Shutting down postgres status monitoring server')
             self.socket.close()
-

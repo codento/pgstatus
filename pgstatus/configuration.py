@@ -15,6 +15,7 @@ DEFAULT_CONFIGURATION = {
     },
 }
 
+
 class ConfigurationError(Exception):
     pass
 
