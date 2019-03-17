@@ -1,11 +1,18 @@
 
+try:
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
+except(IOError, ImportError):
+    long_description = open('README.md').read()
+
 from setuptools import setup, find_packages
 from pgstatus import __version__
 
 setup(
     name='pgstatus',
     keywords='postgresql haproxy status check tools',
-    description='HTTP server for haproxy to check postgresql server status',
+    description='HTTP server to check postgresql server status',
+    long_description=long_description,
     author='Ilkka Tuohela',
     author_email='ilkka.tuohela@codento.com',
     url='https://github.com/hile/pgstatus/',
